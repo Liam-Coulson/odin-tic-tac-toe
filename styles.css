@@ -352,3 +352,20 @@ template {
 /* ============= MY CSS ============ */
 /* ================================= */
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid red 2px;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.space {
+  border: solid black 1px;
+  padding: 10px;
+}
