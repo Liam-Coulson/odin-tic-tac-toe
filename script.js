@@ -19,13 +19,15 @@ function clickHandler(e) {
 
 const GameBoard = (
   () => {
-    this.board = [["","",""],["","",""],["","",""]];
+    this.board = [["","",""],
+                  ["","",""],
+                  ["","",""]];
 
     const markSpace = (Player, space) => {
       board[parseInt(space[0])][parseInt(space[1])] = Player.symbol;
     }
 
-    return {board};
+    return {board, markSpace};
   }
 )()
 
@@ -49,7 +51,12 @@ const GameController = (
     }
 
     const updateHTML = () => {
-
+      for (let row = 0; row <= 2; row++) {
+        for (let col = 0; col <= 2; col++) {
+          let currentSpace = tictactoeContainer.getElementById(`s${row}${col}`)
+          currentSpace.textContent = GameBoard.board[row][col];
+        }
+      }
     }
 
     const checkForWin = () => {
@@ -64,7 +71,7 @@ const GameController = (
       checkForWin();
     }
     
-
+    return {makeMove}
   }
 )()
 
