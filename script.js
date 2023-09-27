@@ -32,10 +32,13 @@ const GameBoard = (
 )()
 
 const GameController = (
-  (Player1, Player2) => {  
-    this.Player1 = Player1; // Player objects
-    this.Player2 = Player2;
+  () => {  
     this.currentTurn = 1;
+
+    const setPlayers = (Player1, Player2) => {
+      this.Player1 = Player1;
+      this.Player2 = Player2;
+    }
 
     // Called upon page load
     const startGame = () => {
@@ -44,16 +47,16 @@ const GameController = (
     
     const getCurrentPlayer = () => {
       if (currentTurn % 2 == 1) {
-        return Player1;
+        return this.Player1;
       } else {
-        return Player2;
+        return this.Player2;
       }
     }
 
     const updateHTML = () => {
       for (let row = 0; row <= 2; row++) {
         for (let col = 0; col <= 2; col++) {
-          let currentSpace = tictactoeContainer.getElementById(`s${row}${col}`)
+          let currentSpace = document.getElementById(`s${row}${col}`)
           currentSpace.textContent = GameBoard.board[row][col];
         }
       }
@@ -71,7 +74,7 @@ const GameController = (
       checkForWin();
     }
     
-    return {makeMove}
+    return {makeMove, setPlayers}
   }
 )()
 
@@ -83,8 +86,10 @@ const Player = (name, symbol) => {
   return {name, symbol}
 }
 
+const Player1 = Player(prompt("Enter a name for player 1 (playing with X)"), "X")
+const Player2 = Player(prompt("Enter a name for player 2 (playing with O)"), "O")
 
-
+GameController.setPlayers(Player1, Player2);
 
 
 
