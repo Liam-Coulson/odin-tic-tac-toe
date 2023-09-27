@@ -1,13 +1,28 @@
+const tictactoeContainer = document.getElementById("tictactoe-container")
+
+// =====================================
+// =============== EVENTS ==============
+// =====================================
+
+tictactoeContainer.addEventListener("click", clickHandler);
+
+function clickHandler(e) {
+  if (e.target.matches(".space") && e.target.textContent == "") {
+    let spaceIndex = e.target.id.slice(1).split(""); // remove leading char in CSS ID
+    GameController.makeMove(spaceIndex);
+  }
+}
+
 // =====================================
 // =============== IIFEs ===============
 // =====================================
 
 const GameBoard = (
   () => {
-    this.board = [];
+    this.board = [["","",""],["","",""],["","",""]];
 
     const markSpace = (Player, space) => {
-      board[space] = Player.symbol;
+      board[parseInt(space[0])][parseInt(space[1])] = Player.symbol;
     }
 
     return {board};

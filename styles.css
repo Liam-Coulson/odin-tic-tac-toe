@@ -361,7 +361,7 @@ template {
   height: 100vh;
 }
 
-.tic-tac-toe-container {
+#tictactoe-container {
   display: grid;
   grid-template-columns: repeat(3, 50px);
   grid-template-rows: repeat(3, 50px);
