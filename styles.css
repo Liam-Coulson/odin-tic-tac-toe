@@ -356,16 +356,19 @@ template {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border: solid red 2px;
   height: 100vh;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
+.tic-tac-toe-container {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(3, 50px);
 }
 
 .space {
   border: solid black 1px;
   padding: 10px;
+  text-align: center;
 }
