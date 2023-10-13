@@ -99,6 +99,8 @@ const GameController = (
       let winner = checkForWin();
       if (winner == "X" || winner == "O") {
         endGame(winner);
+      } else if (currentTurn == 10) {
+        console.log("The game is a tie");
       }
     }
     
