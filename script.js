@@ -63,7 +63,32 @@ const GameController = (
     }
 
     const checkForWin = () => {
+      for (let row = 0; row < 2; row++){
+        console.log(GameBoard.board);
+        if (GameBoard.board[row][0] == GameBoard.board[row][1] && GameBoard.board[row][1] == GameBoard.board[row][2] && GameBoard.board[row][0] != "") {
+          return GameBoard.board[row][0];
+        }
+      }
+      for (let col = 0; col < 2; col++){
+        if (GameBoard.board[0][col] == GameBoard.board[1][col] && GameBoard.board[1][col] == GameBoard.board[2][col] && GameBoard.board[0][col] != "") {
+          return GameBoard.board[0][col];
+        }
+      }
+      if (GameBoard.board[0][0] == GameBoard.board[1][1] && GameBoard.board[1][1] == GameBoard.board[2][2] && GameBoard.board[0][0] != "") {
+        return GameBoard.board[0][0];
+      }
+      if (GameBoard.board[2][0] == GameBoard.board[1][1] && GameBoard.board[1][1] == GameBoard.board[0][2] && GameBoard.board[2][0] != "") {
+        return GameBoard.board[2][0];
+      }
+    }
 
+    const endGame = (winningSymbol) => {
+      tictactoeContainer.removeEventListener("click", clickHandler);
+      if (Player1.symbol == winningSymbol) {
+        console.log(`The winner is ${Player1.name} using ${Player1.symbol}s`)
+      } else {
+        console.log(`The winner is ${Player2.name} using ${Player2.symbol}s`)
+      }
     }
     
     // Called by click event on a space on the tictactoe board
@@ -71,7 +96,10 @@ const GameController = (
       GameBoard.markSpace(getCurrentPlayer(), space);
       currentTurn++;
       updateHTML();
-      checkForWin();
+      let winner = checkForWin();
+      if (winner == "X" || winner == "O") {
+        endGame(winner);
+      }
     }
     
     return {makeMove, setPlayers}
